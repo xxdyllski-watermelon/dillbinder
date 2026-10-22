@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>CATATAN &amp; Keuangan</title>
+<meta name="description" content="Catatan kuliah dan pencatat keuangan sederhana, bisa dipakai offline." />
+
+<!-- PWA -->
+<meta name="theme-color" content="#7E6585" />
+<meta name="color-scheme" content="light dark" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="DYLL Binder" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <h1>📔 DYLL BINDER</h1>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="notes" type="button">Catatan</button>
+      <button class="tab-btn" data-tab="finance" type="button">Keuangan</button>
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Jam digital -->
+    <div class="clock" role="timer" aria-label="Jam dan tanggal saat ini">
+      <span class="clock__time" id="clockTime">--:--:--</span>
+      <span class="clock__date">
+        <span class="d-full" id="clockDateFull"></span>
+        <span class="d-short" id="clockDateShort"></span>
+      </span>
+    </div>
+
+    <button class="icon-btn" id="btnSettings" type="button" title="Pengaturan tampilan" aria-label="Pengaturan tampilan">⚙</button>
+  </header>
+
+  <main>
+    <!-- ===== CATATAN ===== -->
+    <section class="panel active" id="panel-notes">
+      <div class="notes-side">
+        <div class="notes-side__top">
+          <input type="search" id="searchInput" placeholder="Cari catatan…" autocomplete="off" />
+          <button class="btn-add" id="btnNewNote" type="button" title="Catatan baru" aria-label="Catatan baru">+</button>
+        </div>
+        <div class="note-list" id="noteList"></div>
+      </div>
+      <div class="note-edit" id="noteEdit">
+        <div class="note-edit__empty" id="noteEmpty">Pilih catatan, atau tekan “+” untuk membuat yang baru.</div>
+        <div id="noteForm" style="display:none;flex:1;flex-direction:column;min-height:0;">
+          <div class="note-edit__bar">
+            <span class="muted" id="noteMeta"></span>
+            <button class="icon-btn" id="btnDeleteNote" type="button" title="Hapus" aria-label="Hapus catatan">🗑</button>
+          </div>
+          <input class="title" id="noteTitle" placeholder="Judul catatan" autocomplete="off" />
+          <textarea id="noteContent" placeholder="Tulis materi kuliah, ide, atau apa pun di sini…"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KEUANGAN ===== -->
+    <section class="panel" id="panel-finance">
+      <div class="fin-summary">
+        <div class="fin-card"><span class="fin-card__label">Saldo</span><span class="fin-card__val" id="statBalance">Rp 0</span></div>
+        <div class="fin-card income"><span class="fin-card__label">Pemasukan</span><span class="fin-card__val" id="statIncome">Rp 0</span></div>
+        <div class="fin-card expense"><span class="fin-card__label">Pengeluaran</span><span class="fin-card__val" id="statExpense">Rp 0</span></div>
+      </div>
+
+      <form class="fin-form" id="txForm">
+        <select name="type" aria-label="Jenis transaksi">
+          <option value="expense">Keluar</option>
+          <option value="income">Masuk</option>
+        </select>
+        <input name="desc" placeholder="Catatan (misal. Makan siang)" autocomplete="off" />
+        <input name="amount" type="number" inputmode="numeric" min="0" step="any" placeholder="Jumlah (Rp)" required />
+        <select name="category" aria-label="Kategori">
+          <option>Makanan</option><option>Transportasi</option><option>Kuliah</option>
+          <option>Belanja</option><option>Hiburan</option><option>Lainnya</option>
+        </select>
+        <button type="submit">Tambahkan</button>
+      </form>
+
+      <div id="txList"></div>
+    </section>
+  </main>
+
+  <!-- ===== POPOVER PENGATURAN ===== -->
+  <div class="settings-pop" id="settingsPop">
+    <h4>Warna aksen</h4>
+    <div class="swatch-row" id="accentSwatches"></div>
+    <div class="row"><span>Kustom</span><input type="color" id="accentCustom" /></div>
+
+    <h4>Warna teks</h4>
+    <div class="row"><span>Kustom</span><input type="color" id="textCustom" /></div>
+
+    <h4>Tema</h4>
+    <div class="theme-switch">
+      <button data-theme="light" class="active" type="button">☀ Terang</button>
+      <button data-theme="dark" type="button">☾ Gelap</button>
+    </div>
+
+    <h4>Data</h4>
+    <div class="data-row">
+      <button id="btnExport" type="button">Ekspor</button>
+      <label for="importFile" class="data-label">Impor</label>
+      <input type="file" id="importFile" accept="application/json,.json" hidden />
+      <button id="btnReset" type="button">Hapus semua</button>
+    </div>
+
+    <div id="installBox" hidden>
+      <h4>Aplikasi</h4>
+      <div class="data-row">
+        <button id="btnInstall" type="button">⬇ Instal aplikasi</button>
+      </div>
+    </div>
+    <p class="hint" id="iosHint" hidden>Untuk menginstal di iPhone/iPad: buka menu Bagikan di Safari, lalu pilih “Tambah ke Layar Utama”.</p>
+  </div>
+</div>
+
+<noscript>Aplikasi ini membutuhkan JavaScript untuk berjalan.</noscript>
+<script src="script.js"></script>
+</body>
+</html>

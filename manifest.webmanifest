@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "DYLL Binder — Catatan & Keuangan",
+  "short_name": "DYLL Binder",
+  "description": "Catatan kuliah dan pencatat keuangan sederhana, bisa dipakai offline.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F4F0F2",
+  "theme_color": "#7E6585",
+  "categories": ["productivity", "education", "finance"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
