@@ -303,7 +303,11 @@
   }
 
   $("btnSettings").addEventListener("click", function(){
-    $("settingsPop").classList.toggle("open");
+    var pop = $("settingsPop");
+    var hd = document.querySelector("header");
+    /* Posisikan popover tepat di bawah header (tinggi header berbeda di HP & desktop) */
+    pop.style.top = (hd.offsetTop + hd.offsetHeight + 8) + "px";
+    pop.classList.toggle("open");
     renderSettingsPop();
   });
   document.addEventListener("click", function(e){
@@ -411,3 +415,4 @@
   renderFinance();
   scheduleClock();
 })();
+                            
