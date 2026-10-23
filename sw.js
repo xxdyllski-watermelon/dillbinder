@@ -1,7 +1,4 @@
-/* Service worker DYLL Binder — membuat aplikasi bisa dibuka offline.
-   Naikkan angka VERSION setiap kali Anda mengubah file di repository
-   agar pengguna langsung mendapat versi terbaru. */
-var VERSION = "v3";
+var VERSION = "v3.1";
 var CACHE = "dyll-binder-" + VERSION;
 
 var CORE = [
