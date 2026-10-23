@@ -1,4 +1,4 @@
-var VERSION = "v3.1";
+var VERSION = "v1.0";
 var CACHE = "dyll-binder-" + VERSION;
 
 var CORE = [
