@@ -23,7 +23,7 @@
 <div class="app">
 
   <header>
-    <h1>📔 DYLL BINDER</h1>
+    <h1>📔 DiLL Binder</h1>
     <div class="tabs">
       <button class="tab-btn active" data-tab="notes" type="button">Catatan</button>
       <button class="tab-btn" data-tab="finance" type="button">Keuangan</button>
@@ -69,7 +69,7 @@
               <input id="tagInput" placeholder="+ tag" maxlength="20" aria-label="Tambah tag" />
             </form>
           </div>
-          <textarea id="noteContent" placeholder="Tulis materi kuliah, ide, atau apa pun di sini…"></textarea>
+          <textarea id="noteContent" placeholder="Tulis materi kuliah, ide, atau apapun di sini…"></textarea>
         </div>
       </div>
     </section>
@@ -82,7 +82,7 @@
       </div>
 
       <div class="fin-summary">
-        <div class="fin-card"><span class="fin-card__label">Saldo</span><span class="fin-card__val" id="statBalance">Rp 0</span></div>
+        <div class="fin-card"><span class="fin-card__label">Saldo Kamu</span><span class="fin-card__val" id="statBalance">Rp 0</span></div>
         <div class="fin-card income"><span class="fin-card__label">Pemasukan</span><span class="fin-card__val" id="statIncome">Rp 0</span></div>
         <div class="fin-card expense"><span class="fin-card__label">Pengeluaran</span><span class="fin-card__val" id="statExpense">Rp 0</span></div>
       </div>
@@ -103,16 +103,16 @@
 
       <div class="fin-insights">
         <div class="fin-box" id="budgetBox">
-          <div class="fin-box__head"><h3>Anggaran</h3><span class="fin-box__sub" id="budgetMonth"></span></div>
+          <div class="fin-box__head"><h3>Anggaran/budget</h3><span class="fin-box__sub" id="budgetMonth"></span></div>
           <div class="bar"><div class="bar__fill" id="budgetFill"></div></div>
           <p class="fin-box__text" id="budgetText"></p>
           <form class="budget-form" id="budgetForm">
-            <input id="budgetInput" type="number" inputmode="numeric" min="0" step="any" placeholder="Anggaran bulanan (Rp)" aria-label="Anggaran bulanan" />
+            <input id="budgetInput" type="number" inputmode="numeric" min="0" step="any" placeholder="Anggaran/budget bulanan (Rp)" aria-label="Anggaran bulanan" />
             <button type="submit">Simpan</button>
           </form>
         </div>
         <div class="fin-box" id="chartBox">
-          <div class="fin-box__head"><h3>Pengeluaran per kategori</h3></div>
+          <div class="fin-box__head"><h3>Pengeluaran</h3></div>
           <div id="chartWrap"></div>
         </div>
       </div>
@@ -123,7 +123,7 @@
     <!-- ===== TUGAS ===== -->
     <section class="panel" id="panel-tasks">
       <form class="fin-form task-form" id="taskForm">
-        <input name="title" placeholder="Tugas baru (misal. Laporan Basis Data)" maxlength="120" required autocomplete="off" />
+        <input name="title" placeholder="Tugas baru (misal. Tugas dari miss)" maxlength="120" required autocomplete="off" />
         <select name="priority" aria-label="Prioritas">
           <option value="high">Prioritas tinggi</option>
           <option value="med" selected>Prioritas sedang</option>
